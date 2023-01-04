@@ -25,4 +25,5 @@ const lightbox = new SimpleLightbox(".gallery a", {
   animationSpeed: 250,
   captionSelector: "img",
   captionsData: "alt",
+  captionDelay: 250
 });
