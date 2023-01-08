@@ -7,8 +7,9 @@ const instanceLB = basicLightbox.create(
 
 function escListening(e) {
   if (e.key === "Escape") {
-    instanceLB.close();
-    document.body.removeEventListener("keydown", escListening);
+    instanceLB.close(() => {
+      document.body.removeEventListener("keydown", escListening);
+    });
   }
 }
 
@@ -35,9 +36,10 @@ gallery.addEventListener("click", (event) => {
   if (event.target.nodeName !== "IMG") {
     return;
   }
+  
   instanceLB.element().querySelector("#modalImg").src =
     event.target.dataset.source;
-  instanceLB.show();
-
-  document.body.addEventListener("keydown", escListening);
+  instanceLB.show(() => {
+    document.body.addEventListener("keydown", escListening);
+  });
 });
